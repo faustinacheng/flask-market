@@ -36,6 +36,9 @@ class User(db.Model, UserMixin):
     def check_password_correction(self, attempted_password):
         return bcrypt.check_password_hash(self.password_hash, attempted_password)
 
+    def can_purchase(self, item_obj):
+        return self.budget >= item_obj.price
+
 
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -47,3 +50,17 @@ class Item(db.Model):
 
     def __repr__(self):
         return f"Item {self.name}"
+
+    @property
+    def prettier_price(self):
+        if len(str(self.price)) >= 4:
+            formatted_price = str(self.price)
+            for n in range(3, len(str(self.price)), 4):
+                formatted_price = f"{formatted_price[:-n]},{formatted_price[-n:]}"
+            return f"${formatted_price}"
+        else:
+            return f"${self.price}"
+
+    def buy(self, user_obj):
+        self.owner = user_obj.id
+        user_obj.budget -= self.price
