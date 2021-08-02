@@ -39,7 +39,7 @@ def market_page():
                 s_item_object.sell(current_user)
                 db.session.commit()
                 flash(f"Congratulations! You've sold {s_item_object.name} for {s_item_object.prettier_price}",
-                      category="sucess")
+                      category="success")
             else:
                 flash(f"Something went wrong with selling {p_item_object.name}.",
                       category="danger")
@@ -75,7 +75,6 @@ def register_page():
 def login_page():
     form = LoginForm()
     if form.validate_on_submit():
-        print("Poop")
         attempted_user = User.query.filter_by(username=form.username.data).first()
         if attempted_user and attempted_user.check_password_correction(attempted_password=form.password.data):
             login_user(attempted_user)
