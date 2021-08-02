@@ -7,6 +7,10 @@
 {% block content %}
     <div class="position-relative overflow-hidden p-3 p-md-5 m-md-3 text-center bg-dark" style="color:white">
         <div class="col-md-5 p-lg-5 mx-auto my-5">
+            <img class="mb-4"
+                 src="{{ url_for("static", filename="market.png") }}"
+                 style="width:300px"
+                 alt="">
             <h1 class="display-4 font-weight-normal">Flask Market</h1>
             <p class="lead font-weight-normal">Start purchasing products by clicking the link below</p>
             <a class="btn btn-primary" href="{{ url_for('market_page') }}">Get Started</a>
