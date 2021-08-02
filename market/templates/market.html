@@ -5,8 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="row" style="margin-top: 20px; margin-left: 20px">
-        <div class="col-8">
+    <div class="row" style="margin: 20px">
+        <div class="col-md-8">
             <h2>Available Items in Market</h2>
             <p>Click on the items to start buying</p>
             <br>
@@ -44,10 +44,10 @@
                 </tbody>
             </table>
         </div>
-        <div class="col-4">
+        <div class="col-md-4">
             <h2>Owned Items</h2>
             <p>Sell items to put it back on the market</p>
-            <div class="row" style="margin-right: 5px">
+            <div class="row">
                 {% for owned_item in owned_items %}
                     {% include "includes/owned_items_modals.html" %}
                     <div class="col-md-6">
